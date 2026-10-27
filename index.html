@@ -8,6 +8,7 @@
 <meta property="og:title" content="眠月線新手攀爬指南">
 <meta property="og:description" content="入園申請、路線分段、可勾選裝備檢核表,出發前一起確認。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚂</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{--bg:#f6f4ee;--card:#fff;--ink:#1f2a24;--mute:#5d6b62;--line:#e0dccf;--green:#2f6b4f;--green2:#e3efe7;--warn:#a4541a;--warnbg:#fdf0e1;--red:#a02a2a;--redbg:#fbe6e4}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141a17;--card:#1d2621;--ink:#e8efe9;--mute:#9fb0a5;--line:#2e3b34;--green:#6fc29a;--green2:#22362c;--warn:#f0b274;--warnbg:#3a2a18;--red:#f19a94;--redbg:#3b1f1d}}
@@ -63,6 +64,16 @@ table{width:100%;border-collapse:collapse;font-size:15px}
 td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 th{color:var(--mute);font-weight:500;width:34%}
 footer{text-align:center;color:var(--mute);font-size:13px;padding:20px 16px 40px}
+
+#map{height:380px;border-radius:14px;border:1px solid var(--line);z-index:0}
+.wx{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.wd{flex:0 0 96px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 6px;text-align:center;font-size:13px}
+.wd .ic{font-size:26px;line-height:1.3}
+.wd.bad{border-color:var(--red);background:var(--redbg)}
+.wd.ok{border-color:var(--green)}
+.wnow{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wnow .big{font-size:38px;font-weight:700;color:var(--green)}
+.note{font-size:13px;color:var(--mute)}
 @media print{nav,.btns,.progress,header.hero p{display:none}body{background:#fff}details.group{break-inside:avoid}}
 </style>
 </head>
@@ -72,7 +83,7 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:20px 16px 40px
   <p>阿里山森林鐵路支線・鐵道健行<br>入園申請 × 路線分段 × 可勾選裝備檢核表</p>
 </header>
 <nav>
-  <a href="#status">最新狀況</a><a href="#route">路線說明</a><a href="#permit">入園申請</a><a href="#check">檢核表</a><a href="#safety">安全守則</a><a href="#share">分享</a>
+  <a href="#status">最新狀況</a><a href="#weather">天氣</a><a href="#route">路線說明</a><a href="#map-sec">地圖</a><a href="#permit">入園申請</a><a href="#check">檢核表</a><a href="#safety">安全守則</a><a href="#share">分享</a>
 </nav>
 <main>
 
@@ -86,6 +97,13 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:20px 16px 40px
       <li>本頁整理自公開資料,資訊可能過時,不能取代官方公告。</li>
     </ul>
   </div>
+</section>
+
+<section id="weather">
+  <h2>🌤️ 阿里山天氣預報</h2>
+  <div class="card"><div class="wnow" id="wnow">載入中…</div></div>
+  <div class="wx" id="wx"></div>
+  <p class="note">資料來源:Open-Meteo(以沼平車站座標、海拔約 2,200 m 估算),僅供參考。山區午後雷雨變化快,請同時查看中央氣象署。降雨機率 ≥ 50% 以紅框標示,建議改期。</p>
 </section>
 
 <section id="facts">
@@ -116,6 +134,17 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:20px 16px 40px
     <li><span class="km">中段</span><h3>橋樑 + 隧道群</h3><p>高架鐵橋棧板已加寬,但仍有高度;2 號隧道較暗,需頭燈。22 號鐵橋視野最開闊,也最需注意腳下。</p></li>
     <li><span class="km">終點</span><h3>石猴車站</h3><p>多數人在此休息補給後原路折返。注意留足回程體力與時間。</p></li>
   </ol>
+</section>
+
+<section id="map-sec">
+  <h2>📍 路線地圖</h2>
+  <div id="map"></div>
+  <div class="btns">
+    <label class="btn-like"><button type="button" onclick="document.getElementById('gpxFile').click()">匯入 GPX 軌跡</button></label>
+    <input type="file" id="gpxFile" accept=".gpx" hidden>
+    <button type="button" id="locBtn">顯示我的位置</button>
+  </div>
+  <p class="note" id="mapNote">地圖底圖 © OpenStreetMap 貢獻者;鐵道線型即時取自 OpenStreetMap。若線型缺漏或不精確,請匯入官方或自己的 GPX 軌跡(離線地圖仍建議另外下載)。</p>
 </section>
 
 <section id="permit">
@@ -167,6 +196,7 @@ footer{text-align:center;color:var(--mute);font-size:13px;padding:20px 16px 40px
 </main>
 <footer>資料整理自林業及自然保育署、媒體報導等公開資訊 · 更新:2026-10-27<br>行前請務必再次查證官方公告</footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const DATA=[
  {t:"📋 行前必辦",items:[
@@ -224,6 +254,64 @@ document.getElementById("themeBtn").onclick=()=>{
   r.dataset.theme=dark?"light":"dark";
 };
 update();
+
+/* ---------- 天氣 ---------- */
+const WX_LAT=23.5105,WX_LON=120.8043;
+const WC={0:["☀️","晴"],1:["🌤️","大致晴"],2:["⛅","多雲"],3:["☁️","陰"],45:["🌫️","霧"],48:["🌫️","霧凇"],51:["🌦️","毛毛雨"],53:["🌦️","毛毛雨"],55:["🌧️","毛毛雨"],61:["🌧️","小雨"],63:["🌧️","中雨"],65:["🌧️","大雨"],80:["🌦️","陣雨"],81:["🌧️","陣雨"],82:["⛈️","強陣雨"],95:["⛈️","雷雨"],96:["⛈️","雷雨冰雹"],99:["⛈️","雷雨冰雹"]};
+const wc=c=>WC[c]||["❓","—"];
+async function loadWeather(){
+  const now=document.getElementById("wnow"),box=document.getElementById("wx");
+  try{
+    const u=`https://api.open-meteo.com/v1/forecast?latitude=${WX_LAT}&longitude=${WX_LON}&elevation=2200&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,relative_humidity_2m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum&timezone=Asia%2FTaipei&forecast_days=7`;
+    const r=await fetch(u);if(!r.ok)throw 0;const d=await r.json();
+    const c=d.current,[ic,tx]=wc(c.weather_code);
+    now.innerHTML=`<div class="big">${ic} ${Math.round(c.temperature_2m)}°C</div><div>${tx}・體感 ${Math.round(c.apparent_temperature)}°C<br>濕度 ${c.relative_humidity_2m}%・風速 ${Math.round(c.wind_speed_10m)} km/h</div>`;
+    box.innerHTML=d.daily.time.map((t,i)=>{
+      const [i2,t2]=wc(d.daily.weather_code[i]),p=d.daily.precipitation_probability_max[i];
+      const dt=new Date(t+"T00:00:00"),lb=i==0?"今天":(dt.getMonth()+1)+"/"+dt.getDate()+"("+"日一二三四五六"[dt.getDay()]+")";
+      return `<div class="wd ${p>=50?"bad":"ok"}"><b>${lb}</b><div class="ic">${i2}</div>${t2}<br>${Math.round(d.daily.temperature_2m_min[i])}–${Math.round(d.daily.temperature_2m_max[i])}°C<br>☔ ${p??"–"}%</div>`}).join("");
+  }catch(e){now.textContent="天氣暫時無法載入,請改看中央氣象署。";}
+}
+loadWeather();
+
+/* ---------- 地圖 ---------- */
+(function(){
+  if(typeof L==="undefined"){document.getElementById("map").innerHTML='<p style="padding:16px">地圖載入失敗(需連網)。</p>';return}
+  const map=L.map("map").setView([WX_LAT,WX_LON],14);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap contributors"}).addTo(map);
+  L.marker([WX_LAT,WX_LON]).addTo(map).bindPopup("<b>沼平車站</b><br>起點(座標為概略位置)");
+  const group=L.featureGroup().addTo(map);
+  async function osm(){
+    const q=`[out:json][timeout:25];(way["railway"]["name"~"眠月"](23.40,120.60,23.60,120.90);way["railway"~"narrow_gauge|abandoned|disused"](23.44,120.70,23.56,120.84););out geom;node["railway"~"station|halt"]["name"~"沼平|石猴|塔山|眠月|二萬平"](23.40,120.60,23.60,120.90);out;`;
+    try{
+      const r=await fetch("https://overpass-api.de/api/interpreter",{method:"POST",body:"data="+encodeURIComponent(q)});
+      const d=await r.json();
+      let named=0;
+      d.elements.forEach(e=>{
+        if(e.type==="way"&&e.geometry){
+          const isM=/眠月/.test((e.tags&&e.tags.name)||"");if(isM)named++;
+          L.polyline(e.geometry.map(g=>[g.lat,g.lon]),{color:isM?"#d4380d":"#888",weight:isM?5:3,opacity:isM?.9:.6,dashArray:isM?null:"6 6"}).addTo(group).bindPopup(((e.tags&&e.tags.name)||"鐵道")+"(OSM)");
+        }else if(e.type==="node"){
+          L.circleMarker([e.lat,e.lon],{radius:7,color:"#1f4d3a",fillColor:"#fff",fillOpacity:1}).addTo(group).bindTooltip(e.tags.name,{permanent:true,direction:"top"});
+        }
+      });
+      if(group.getLayers().length)map.fitBounds(group.getBounds(),{padding:[20,20]});
+      if(!named)document.getElementById("mapNote").insertAdjacentHTML("afterbegin","<b>目前 OSM 上沒有標註「眠月線」名稱的線段,灰色虛線為附近鐵道參考,請匯入 GPX 取得準確軌跡。</b><br>");
+    }catch(e){document.getElementById("mapNote").insertAdjacentHTML("afterbegin","<b>即時鐵道資料載入失敗,請匯入 GPX。</b><br>");}
+  }
+  osm();
+  document.getElementById("gpxFile").addEventListener("change",async ev=>{
+    const f=ev.target.files[0];if(!f)return;
+    const x=new DOMParser().parseFromString(await f.text(),"application/xml");
+    const pts=[...x.querySelectorAll("trkpt,rtept")].map(n=>[+n.getAttribute("lat"),+n.getAttribute("lon")]);
+    if(!pts.length){alert("找不到軌跡點");return}
+    const l=L.polyline(pts,{color:"#1d6fd8",weight:5}).addTo(map);map.fitBounds(l.getBounds(),{padding:[20,20]});
+  });
+  document.getElementById("locBtn").onclick=()=>{
+    if(!navigator.geolocation)return alert("此裝置不支援定位");
+    navigator.geolocation.getCurrentPosition(p=>{const ll=[p.coords.latitude,p.coords.longitude];L.circleMarker(ll,{radius:8,color:"#1d6fd8"}).addTo(map).bindPopup("你的位置").openPopup();map.setView(ll,15)},()=>alert("無法取得位置"));
+  };
+})();
 </script>
 </body>
 </html>
