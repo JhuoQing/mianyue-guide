@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>眠月線新手攀爬指南｜檢核表與路線說明</title>
+<meta name="description" content="阿里山眠月線新手必備:入園申請、路線分段、裝備檢核表、安全提醒。">
+<meta property="og:title" content="眠月線新手攀爬指南">
+<meta property="og:description" content="入園申請、路線分段、可勾選裝備檢核表,出發前一起確認。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚂</text></svg>">
+<style>
+:root{--bg:#f6f4ee;--card:#fff;--ink:#1f2a24;--mute:#5d6b62;--line:#e0dccf;--green:#2f6b4f;--green2:#e3efe7;--warn:#a4541a;--warnbg:#fdf0e1;--red:#a02a2a;--redbg:#fbe6e4}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141a17;--card:#1d2621;--ink:#e8efe9;--mute:#9fb0a5;--line:#2e3b34;--green:#6fc29a;--green2:#22362c;--warn:#f0b274;--warnbg:#3a2a18;--red:#f19a94;--redbg:#3b1f1d}}
+:root[data-theme=dark]{--bg:#141a17;--card:#1d2621;--ink:#e8efe9;--mute:#9fb0a5;--line:#2e3b34;--green:#6fc29a;--green2:#22362c;--warn:#f0b274;--warnbg:#3a2a18;--red:#f19a94;--redbg:#3b1f1d}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+header.hero{background:linear-gradient(135deg,#1f4d3a,#3c7a59);color:#fff;padding:calc(48px + env(safe-area-inset-top)) 20px 40px;text-align:center}
+.hero h1{margin:0 0 8px;font-size:clamp(26px,6vw,40px);letter-spacing:.05em}
+.hero p{margin:0 auto;max-width:560px;opacity:.92}
+nav{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:8px 12px;padding-top:calc(8px + env(safe-area-inset-top))}
+nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:6px 12px;border-radius:99px;font-size:14px}
+nav a:hover{background:var(--green2)}
+main{max-width:820px;margin:0 auto;padding:20px 16px 60px}
+section{margin-top:32px}
+h2{font-size:22px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:12px}
+.alert{border-radius:14px;padding:14px 18px;margin-top:20px}
+.alert.warn{background:var(--warnbg);color:var(--warn);border:1px solid var(--warn)}
+.alert.red{background:var(--redbg);color:var(--red);border:1px solid var(--red)}
+.alert ul{margin:6px 0 0;padding-left:20px}
+.alert a{color:inherit}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.fact b{display:block;font-size:22px;color:var(--green)}
+.fact span{font-size:13px;color:var(--mute)}
+.timeline{list-style:none;margin:0;padding:0 0 0 18px;border-left:3px solid var(--green)}
+.timeline li{position:relative;padding:0 0 18px 18px}
+.timeline li::before{content:"";position:absolute;left:-27px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--card);border:3px solid var(--green)}
+.timeline h3{margin:0;font-size:17px}
+.timeline .km{font-size:13px;color:var(--green);font-weight:700}
+.timeline p{margin:2px 0 0;color:var(--mute);font-size:15px}
+ol.steps{padding-left:22px;margin:0}
+ol.steps li{margin-bottom:6px}
+.progress{position:sticky;top:52px;z-index:5;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.bar{flex:1;height:10px;background:var(--green2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--green);transition:width .25s}
+.progress span{font-size:14px;font-weight:700;min-width:48px;text-align:right}
+details.group{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+details.group summary{cursor:pointer;padding:12px 16px;font-weight:700;list-style:none;display:flex;justify-content:space-between}
+details.group summary::-webkit-details-marker{display:none}
+details.group summary small{color:var(--mute);font-weight:400}
+.items{padding:0 16px 10px}
+.items label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.items input{width:20px;height:20px;margin-top:4px;accent-color:var(--green);flex:none}
+.items input:checked+span{text-decoration:line-through;color:var(--mute)}
+.items em{font-style:normal;font-size:13px;color:var(--mute);display:block}
+.must{color:var(--red);font-size:12px;font-weight:700;margin-left:4px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+button{font:inherit;font-size:14px;border:1px solid var(--green);background:var(--card);color:var(--green);padding:8px 14px;border-radius:99px;cursor:pointer}
+button.primary{background:var(--green);color:var(--card)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mute);font-weight:500;width:34%}
+footer{text-align:center;color:var(--mute);font-size:13px;padding:20px 16px 40px}
+@media print{nav,.btns,.progress,header.hero p{display:none}body{background:#fff}details.group{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>🚂 眠月線新手指南</h1>
+  <p>阿里山森林鐵路支線・鐵道健行<br>入園申請 × 路線分段 × 可勾選裝備檢核表</p>
+</header>
+<nav>
+  <a href="#status">最新狀況</a><a href="#route">路線說明</a><a href="#permit">入園申請</a><a href="#check">檢核表</a><a href="#safety">安全守則</a><a href="#share">分享</a>
+</nav>
+<main>
+
+<section id="status" style="margin-top:0">
+  <div class="alert warn">
+    <b>⚠️ 出發前務必確認最新開放狀況</b>
+    <ul>
+      <li>2025 年 8 月豪雨曾造成 2 號隧道口崩塌、申請被廢止;現況請以官方公告為準。</li>
+      <li>與眠月線共線的<b>塔山步道 0K–2K</b>,原定 2026/9/1 重新開放;2K–3.5K 預計封閉至 2027 年 6 月底。</li>
+      <li>公告查詢:<a href="https://hike.taiwan.gov.tw/" target="_blank" rel="noopener">台灣山林悠遊網</a>、林業及自然保育署嘉義分署 FB、阿里山國家森林遊樂區 FB。</li>
+      <li>本頁整理自公開資料,資訊可能過時,不能取代官方公告。</li>
+    </ul>
+  </div>
+</section>
+
+<section id="facts">
+  <h2 style="margin-top:28px">📌 速覽</h2>
+  <div class="facts">
+    <div class="fact"><b>約 9.2 km</b><span>眠月線全長</span></div>
+    <div class="fact"><b>24 / 12</b><span>橋樑 / 隧道</span></div>
+    <div class="fact"><b>需申請</b><span>入台灣一葉蘭保留區</span></div>
+    <div class="fact"><b>★★☆</b><span>難度:中(平緩但長)</span></div>
+  </div>
+</section>
+
+<section id="route">
+  <h2>🗺️ 路線說明</h2>
+  <div class="card">
+    <table>
+      <tr><th>起點</th><td>阿里山沼平車站 → 塔山步道 → 眠月線入口</td></tr>
+      <tr><th>終點(常見)</th><td>石猴車站(阿里山端進入、原路折返);亦可由南投溪頭端進入</td></tr>
+      <tr><th>特色</th><td>廢棄鐵道、高架鐵橋、隧道、原始森林、一葉蘭自然保留區</td></tr>
+      <tr><th>時間</th><td>依來源與腳程差異大,新手建議<b>預留一整天</b>,並以日落前返回為原則</td></tr>
+      <tr><th>最佳季節</th><td>春、秋天氣較穩;夏季午後雷陣雨多,雨後枕木與棧板濕滑</td></tr>
+    </table>
+  </div>
+  <ol class="timeline">
+    <li><span class="km">起點</span><h3>沼平車站</h3><p>阿里山森鐵起點,從此接塔山步道。切勿沿鐵軌擅自行走(入口前軌道路段違法,可罰款)。</p></li>
+    <li><span class="km">塔山步道 0K–2K</span><h3>前往眠月線入口</h3><p>約 40 分鐘,緩上坡。此段為整修路段,出發前確認是否開放。</p></li>
+    <li><span class="km">眠月線入口</span><h3>查驗許可證</h3><p>進入台灣一葉蘭自然保留區,須帶許可證與證件,可能遭查驗。</p></li>
+    <li><span class="km">中段</span><h3>橋樑 + 隧道群</h3><p>高架鐵橋棧板已加寬,但仍有高度;2 號隧道較暗,需頭燈。22 號鐵橋視野最開闊,也最需注意腳下。</p></li>
+    <li><span class="km">終點</span><h3>石猴車站</h3><p>多數人在此休息補給後原路折返。注意留足回程體力與時間。</p></li>
+  </ol>
+</section>
+
+<section id="permit">
+  <h2>📝 入園申請(必做)</h2>
+  <div class="card">
+    <ol class="steps">
+      <li>至<a href="https://hike.taiwan.gov.tw/" target="_blank" rel="noopener">台灣山林悠遊網</a>搜尋「台灣一葉蘭自然保留區」線上申請。</li>
+      <li>通常於進入日前 60 天起受理,且每日有名額上限,熱門週末建議<b>提早申請</b>。</li>
+      <li>核准後<b>列印或存下許可證</b>,當天與身分證件一同攜帶(手機請先離線截圖)。</li>
+      <li>未申請擅自進入,依文化資產保存法可處新臺幣 3 萬至 15 萬元罰鍰。</li>
+    </ol>
+  </div>
+</section>
+
+<section id="check">
+  <h2>✅ 新手檢核表</h2>
+  <div class="progress"><div class="bar"><i id="barFill"></i></div><span id="pct">0%</span></div>
+  <div id="groups"></div>
+  <div class="btns">
+    <button class="primary" id="copyList">複製未完成項目</button>
+    <button id="resetAll">全部重置</button>
+    <button onclick="window.print()">列印 / 存 PDF</button>
+  </div>
+  <p style="font-size:13px;color:var(--mute)">勾選進度只存在你這支手機的瀏覽器,不會同步給朋友。</p>
+</section>
+
+<section id="safety">
+  <h2>🛟 安全守則</h2>
+  <div class="alert red">
+    <ul>
+      <li><b>天氣:</b>出發前一天與當天早上查看天氣;連日大雨、豪雨特報、颱風前後請改期。</li>
+      <li><b>結伴:</b>新手不建議單獨前往,並告知親友行程與預計返回時間。</li>
+      <li><b>鐵橋:</b>緩慢通過、保持三點接觸、勿在橋上拍照或併排行走,避免下望。</li>
+      <li><b>折返時間:</b>先訂好「最晚折返點」,抵達時若已超時就掉頭。</li>
+      <li><b>通訊:</b>部分路段收訊不佳,地圖請先下載離線版。</li>
+      <li><b>緊急:</b>報案 110 / 119(國際通用 112)。</li>
+      <li><b>無痕山林:</b>垃圾帶走;如廁請依規定處理,勿污染保留區。</li>
+    </ul>
+  </div>
+</section>
+
+<section id="share">
+  <h2>🔗 分享給朋友</h2>
+  <div class="btns">
+    <button class="primary" id="shareBtn">分享此頁</button>
+    <button id="themeBtn">切換深 / 淺色</button>
+  </div>
+</section>
+</main>
+<footer>資料整理自林業及自然保育署、媒體報導等公開資訊 · 更新:2026-10-27<br>行前請務必再次查證官方公告</footer>
+
+<script>
+const DATA=[
+ {t:"📋 行前必辦",items:[
+  ["入園許可證(已核准)",1,"列印或離線截圖"],["身分證件正本",1,"與許可證姓名一致"],["確認眠月線與塔山步道開放狀況",1,"出發前一天再看一次公告"],["查看天氣與降雨預報",1,""],["告知親友行程與折返時間",0,""],["下載離線地圖 / 軌跡",0,"收訊不穩"]]},
+ {t:"👟 穿著",items:[
+  ["防滑登山鞋或越野跑鞋",1,"枕木與棧板濕時很滑"],["排汗衣物 + 長褲",0,"預防蚊蟲與擦傷"],["保暖外套",1,"山上溫差大"],["雨衣(兩截式或斗篷)",1,"午後常下雨"],["帽子、手套(防曬/防刮)",0,""],["登山襪 + 備用襪",0,""]]},
+ {t:"🎒 背包裝備",items:[
+  ["20–30L 背包 + 背包防水套",0,""],["頭燈(含備用電池)",1,"隧道與延誤時必備"],["登山杖",0,"下坡與鐵橋輔助,可減輕膝蓋負擔"],["手套/護膝",0,""],["行動電源",0,""],["哨子、保溫毯",0,"緊急用"],["垃圾袋(帶走所有垃圾)",1,""],["攜帶式馬桶袋/便袋",1,"依保留區規定處理"]]},
+ {t:"🍙 水與食物",items:[
+  ["飲用水 2L 以上",1,"途中無補給"],["午餐 / 行動糧",1,""],["電解質、能量膠或巧克力",0,""],["額外一份緊急糧",0,""]]},
+ {t:"🩹 醫療與個人",items:[
+  ["個人藥品",0,""],["急救包(OK 繃、紗布、彈性繃帶)",0,""],["防蚊液 / 防蟲",0,"蚊蟲、蜂類"],["防曬乳",0,""],["衛生紙、濕紙巾",0,""]]},
+ {t:"🚗 交通與當天",items:[
+  ["安排前往阿里山的交通與回程",0,"留意末班車/接駁時間"],["沼平車站集合時間",0,"建議清晨出發"],["設定最晚折返時間",1,"例如下午 1–2 點未到終點即折返"]]}
+];
+const KEY="mianyue-check-v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}};
+const wrap=document.getElementById("groups");
+DATA.forEach((g,gi)=>{
+  const d=document.createElement("details");d.className="group";d.open=gi<2;
+  d.innerHTML=`<summary><span>${g.t}</span><small data-g="${gi}"></small></summary><div class="items"></div>`;
+  const box=d.querySelector(".items");
+  g.items.forEach((it,ii)=>{
+    const id=gi+"-"+ii;
+    const l=document.createElement("label");
+    l.innerHTML=`<input type="checkbox" data-id="${id}" ${state[id]?"checked":""}><span>${it[0]}${it[1]?'<b class="must">必備</b>':''}${it[2]?`<em>${it[2]}</em>`:""}</span>`;
+    box.appendChild(l);
+  });
+  wrap.appendChild(d);
+});
+function update(){
+  let done=0,total=0;
+  DATA.forEach((g,gi)=>{let c=0;g.items.forEach((_,ii)=>{total++;if(state[gi+"-"+ii]){done++;c++}});
+    document.querySelector(`[data-g="${gi}"]`).textContent=c+" / "+g.items.length});
+  const p=Math.round(done/total*100);
+  document.getElementById("barFill").style.width=p+"%";
+  document.getElementById("pct").textContent=p+"%";
+}
+wrap.addEventListener("change",e=>{if(e.target.dataset.id){state[e.target.dataset.id]=e.target.checked;save();update()}});
+document.getElementById("resetAll").onclick=()=>{if(confirm("確定清除所有勾選?")){state={};save();wrap.querySelectorAll("input").forEach(i=>i.checked=false);update()}};
+document.getElementById("copyList").onclick=async()=>{
+  let out="【眠月線 未完成項目】\n";
+  DATA.forEach((g,gi)=>{const r=g.items.filter((_,ii)=>!state[gi+"-"+ii]);if(r.length)out+="\n"+g.t+"\n"+r.map(i=>"☐ "+i[0]).join("\n")+"\n"});
+  try{await navigator.clipboard.writeText(out);alert("已複製")}catch(e){prompt("請手動複製:",out)}
+};
+document.getElementById("shareBtn").onclick=async()=>{
+  const d={title:document.title,text:"眠月線新手檢核表與路線說明",url:location.href.split("#")[0]};
+  try{if(navigator.share)await navigator.share(d);else{await navigator.clipboard.writeText(d.url);alert("連結已複製")}}catch(e){}
+};
+document.getElementById("themeBtn").onclick=()=>{
+  const r=document.documentElement;
+  const dark=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  r.dataset.theme=dark?"light":"dark";
+};
+update();
+</script>
+</body>
+</html>
